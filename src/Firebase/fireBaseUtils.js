@@ -12,8 +12,6 @@ const config = {
   measurementId: "G-12YBWS73QC",
 };
 
-firebase.initializeApp(config);
-
 // function that will take user UID from the user object and store it
 // in the data base.
 
@@ -43,6 +41,23 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 
   return userRef;
 };
+
+export const addCollectAndDocumnets = async (collectionKey, objectsToAdd) => {
+  const collectionRef = firestore.collection(collectionKey);
+  console.log("----Collection----->", collectionRef);
+
+  // adding all our sets
+  const batch = firestore.batch();
+  objectsToAdd.forEach((obj) => {
+    const newDocRef = collectionRef.doc();
+    console.log("New Doc ------>", newDocRef);
+    batch.set(newDocRef, obj);
+  });
+
+  return await batch.commit();
+};
+
+firebase.initializeApp(config);
 
 export const auth = firebase.auth();
 // export firestore.

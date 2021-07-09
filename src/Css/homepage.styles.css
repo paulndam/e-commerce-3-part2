@@ -1,17 +1,49 @@
-/* Error: expected "{".
- *    ,
- * 54 | <<<<<<< HEAD
- *    |             ^
- *    '
- *   src/Sass/homepage.styles.scss 54:13  root stylesheet */
+.homepage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 80px;
+}
 
-body::before {
-  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
-      "Droid Sans Mono", monospace, monospace;
-  white-space: pre;
-  display: block;
-  padding: 1em;
-  margin-bottom: 1em;
-  border-bottom: 2px solid black;
-  content: 'Error: expected "{".\a    \2577 \a 54 \2502  <<<<<<< HEAD\a    \2502              ^\a    \2575 \a   src/Sass/homepage.styles.scss 54:13  root stylesheet';
+.directory-menu {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.menu-item {
+  min-width: 30%;
+  height: 240px;
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+  margin: 0 7.5px 15px;
+}
+.menu-item:first-child {
+  margin-right: 7.5px;
+}
+.menu-item:last-child {
+  margin-left: 7.5px;
+}
+.menu-item .content {
+  height: 90px;
+  padding: 0 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+}
+.menu-item .content .title {
+  font-weight: bold;
+  margin-bottom: 6px;
+  font-size: 22px;
+  color: #4a4a4a;
+}
+.menu-item .content .subtitle {
+  font-weight: lighter;
+  font-size: 16px;
 }
