@@ -1,13 +1,14 @@
 import { createStore, applyMiddleware } from "redux";
 import { persistStore } from "redux-persist";
 import logger from "redux-logger";
-import thunk from "redux-thunk";
-
+import createSagaMiddleware from "@redux-saga/core";
 import rootReducer from "../Reducer/rootReducer";
+import rootSaga from "../Saga/rootSaga";
 
+const sagaMiddleWare = createSagaMiddleware();
 // redux persist allow browser to cache our store.
 
-const middlewares = [thunk];
+const middlewares = [sagaMiddleWare];
 
 if (process.env.NODE_ENV === "development") {
   middlewares.push(logger);
@@ -15,11 +16,8 @@ if (process.env.NODE_ENV === "development") {
 
 export const store = createStore(rootReducer, applyMiddleware(...middlewares));
 
-export const persistor = persistStore(store);
+sagaMiddleWare.run(rootSaga);
 
-// const exportObj = {
-//   store,
-//   persistor,
-// };
+export const persistor = persistStore(store);
 
 export default { store, persistor };
