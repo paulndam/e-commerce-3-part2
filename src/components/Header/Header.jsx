@@ -25,6 +25,7 @@ const Header = ({ currentUser, hidden, signOutStart }) => {
       <OptionsContainer>
         <OptionLink to="/shop">Shop</OptionLink>
         <OptionLink to="/shop">Contact</OptionLink>
+
         {currentUser ? (
           <OptionLink as="div" onClick={signOutStart}>
             Log-Out
@@ -32,6 +33,12 @@ const Header = ({ currentUser, hidden, signOutStart }) => {
         ) : (
           <OptionLink to="/signin">Sign-In</OptionLink>
         )}
+
+        {currentUser ? (
+          <OptionLink as="div" to="/shop">
+            {currentUser.displayName}
+          </OptionLink>
+        ) : null}
         <CartIcon />
       </OptionsContainer>
       {hidden ? null : <CartDropDown />}
